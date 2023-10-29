@@ -1,0 +1,14 @@
+{
+  "name": "servenodejs",
+  "version": "1.0.0",
+  "description": "Projeto desenvolvido na formacao React + NodeJs da Alura   ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rayssa Neder",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
