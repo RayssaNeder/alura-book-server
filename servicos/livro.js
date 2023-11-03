@@ -12,7 +12,14 @@ function getLivro(id){
     return livroEncontrado
 }
 
+function cadastraLivro(livro){
+    const livros = JSON.parse(fs.readFileSync("livros.json"))
+
+    fs.writeFileSync("livros.json", JSON.stringify([...livros, livro ]))
+}
+
 module.exports = {
     getTodosLivros,
-    getLivro
+    getLivro,
+    cadastraLivro
 }
