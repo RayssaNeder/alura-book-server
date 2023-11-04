@@ -36,9 +36,21 @@ function atualizaLivro(livroUpdate, id){
     fs.writeFileSync("livros.json", JSON.stringify(livros))
 }
 
+function removeLivro(id){
+
+    console.log(id)
+
+    const livros = JSON.parse(fs.readFileSync("livros.json"))
+
+    const livrosFiltrados = livros.filter(livro => livro.id !== id)
+
+    fs.writeFileSync("livros.json", JSON.stringify(livrosFiltrados))
+}
+
 module.exports = {
     getTodosLivros,
     getLivro,
     cadastraLivro, 
-    atualizaLivro
+    atualizaLivro,
+    removeLivro
 }
