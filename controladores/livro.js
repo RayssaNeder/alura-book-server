@@ -31,10 +31,16 @@ function getLivroById (req, res) {
 function postLivro (req, res) {
     try{
         const livroNovo = req.body
-        console.log(livroNovo)
-        cadastraLivro(livroNovo)
-        res.status(201)
-        res.send("Livro inserido com sucesso")
+        if( req.body.nome){
+            cadastraLivro(livroNovo)
+            res.status(201)
+            res.send("Livro inserido com sucesso")
+        }else{
+            res.status(422)
+            res.send("O campo nome deve ser informado")
+        }
+
+       
     }catch(error){
         res.status(500)
         res.send(error.message)
