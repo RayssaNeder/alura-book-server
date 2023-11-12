@@ -1,9 +1,59 @@
-const { getTodosLivros } = require("../servicos/livro")
+const { getTodosLivros, getLivro, cadastraLivro, atualizaLivro, removeLivro } = require("../servicos/livro")
 
 
 function getLivros (req, res) {
     try{
-        res.send(getTodosLivros())
+        const livros = getTodosLivros()
+        res.send(livros)
+    }catch(error){
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+function getLivroById (req, res) {
+    try{
+        const livros = getLivro(req.params.id)
+        res.send(livros)
+    }catch(error){
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+function postLivro (req, res) {
+    try{
+        const livroNovo = req.body
+        console.log(livroNovo)
+        cadastraLivro(livroNovo)
+        res.status(201)
+        res.send("Livro inserido com sucesso")
+    }catch(error){
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+function patchLivro (req, res) {
+    try{
+        const body = req.body
+        const id = req.params.id
+
+        atualizaLivro(body, id)
+        res.status(201)
+        res.send("Livro atualizado com sucesso")
+    }catch(error){
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+function deleteLivro (req, res) {
+    try{
+        const id = req.params.id
+        removeLivro("1")
+        res.status(201)
+        res.send("Livro deletado com sucesso")
     }catch(error){
         res.status(500)
         res.send(error.message)
@@ -11,5 +61,9 @@ function getLivros (req, res) {
 }
 
 module.exports = {
-    getLivros
+    getLivros,
+    getLivroById,
+    postLivro,
+    patchLivro,
+    deleteLivro
 }
